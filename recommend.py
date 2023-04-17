@@ -1,11 +1,10 @@
-import os
 import pandas as pd
+from pathlib import Path
 
 
-user_recs = pd.read_parquet(os.path.join("outputs", "recommend_books"))
-book_recs = pd.read_parquet(os.path.join("outputs", "recommend_readers"))
-
-database = pd.read_parquet(os.path.join("outputs", "work_df")).reset_index(drop=True)
+user_recs = pd.read_parquet(Path("./dataframes/recommend_books").absolute())
+book_recs = pd.read_parquet(Path("./dataframes/recommend_readers").absolute())
+database = pd.read_parquet(Path("./dataframes/work_df").absolute())
 
 
 def recommend_books_to_readers(user_id: int) -> pd.DataFrame:
