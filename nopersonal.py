@@ -16,6 +16,7 @@ def create_pairs(col) -> pd.DataFrame:
     pairs = pd.DataFrame(list(permutations(col, 2)), columns=["book_a", "book_b"])
     return pairs
 
+
 def return_book_pairs(library : pd.DataFrame, book_title : "str") -> pd.DataFrame:
     """Take a dataframe and book title as inputs, and return the top 10 books most frequently paired with the book
 
@@ -27,13 +28,13 @@ def return_book_pairs(library : pd.DataFrame, book_title : "str") -> pd.DataFram
         pd.DataFrame: pandas dataframe
     """
 
-
     book_pairs = library.groupby("userId")["title"].apply(create_pairs).reset_index(drop=True)
     pair_counts = book_pairs.groupby(["book_a", "book_b"]).size()
     counts_df = pair_counts.to_frame(name="size").reset_index().sort_values(by="size", ascending=False)
     true_pairs = counts_df[counts_df["book_a"] != counts_df["book_b"]]
 
     return true_pairs[true_pairs["book_a"] == book_title].nlargest(10, "size")
+
 
 def main() -> None:
 
@@ -55,6 +56,7 @@ def main() -> None:
         st.text(f"Top ten books frequently read with `{bookname}`")
         book_rec = return_book_pairs(df, book_title = bookname)
         st.write(book_rec)
+
 
 if __name__ == "__main__":
     main()
