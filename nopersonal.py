@@ -1,5 +1,5 @@
 from itertools import permutations
-from pathlib import Path, PurePath
+from pathlib import Path
 import pandas as pd
 import streamlit as st
 
@@ -13,6 +13,7 @@ def create_pairs(col) -> pd.DataFrame:
     Returns:
         pd.DataFrame: pandas dataframe
     """
+
     pairs = pd.DataFrame(list(permutations(col, 2)), columns=["book_a", "book_b"])
     return pairs
 
