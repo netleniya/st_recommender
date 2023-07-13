@@ -85,8 +85,7 @@ def main() -> None:
         st.write(book_rec)
 
 
-# TODO #1 Rename this here and in `main`
-def _create_menu(arg0, label, options, arg2):
+def _create_menu(arg0, label, arg2, options):
     st.header(arg0)
     result = st.selectbox(label=label, options=options)
     st.subheader(arg2)
