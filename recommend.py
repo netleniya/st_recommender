@@ -1,7 +1,7 @@
-import pandas as pd
 from pathlib import Path
 from typing import Union
 
+import pandas as pd
 
 user_recs = pd.read_parquet(Path("./dataframes/recommend_books").absolute())
 book_recs = pd.read_parquet(Path("./dataframes/recommend_readers").absolute())
